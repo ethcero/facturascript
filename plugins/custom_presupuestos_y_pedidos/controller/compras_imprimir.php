@@ -12,7 +12,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -452,7 +452,7 @@ class compras_imprimir extends fbase_controller
 
         /*
          * Rellenamos la última tabla de la página:
-         * 
+         *
          * Página            Neto    IVA   Total
          */
         $pdf_doc->new_table();
@@ -474,21 +474,23 @@ class compras_imprimir extends fbase_controller
             'lineCol' => array(0.3, 0.3, 0.3),
             'width' => 520
         );
-        foreach ($lineas_iva as $li) {
-            $imp = $this->impuesto->get($li['codimpuesto']);
-            if ($imp) {
-                $titulo['iva' . $li['iva']] = '<b>' . $imp->descripcion . '</b>';
-            } else {
-                $titulo['iva' . $li['iva']] = '<b>' . FS_IVA . ' ' . $li['iva'] . '%</b>';
+        if (!isset($_GET['noiva'])) {
+            foreach ($lineas_iva as $li) {
+                $imp = $this->impuesto->get($li['codimpuesto']);
+                if ($imp) {
+                    $titulo['iva' . $li['iva']] = '<b>' . $imp->descripcion . '</b>';
+                } else {
+                    $titulo['iva' . $li['iva']] = '<b>' . FS_IVA . ' ' . $li['iva'] . '%</b>';
+                }
+
+                $fila['iva' . $li['iva']] = $this->show_precio($li['totaliva'], $this->documento->coddivisa);
+
+                if ($li['totalrecargo'] != 0) {
+                    $fila['iva' . $li['iva']] .= "\nR.E. " . $li['recargo'] . "%: " . $this->show_precio($li['totalrecargo'], $this->documento->coddivisa);
+                }
+
+                $opciones['cols']['iva' . $li['iva']] = array('justification' => 'right');
             }
-
-            $fila['iva' . $li['iva']] = $this->show_precio($li['totaliva'], $this->documento->coddivisa);
-
-            if ($li['totalrecargo'] != 0) {
-                $fila['iva' . $li['iva']] .= "\nR.E. " . $li['recargo'] . "%: " . $this->show_precio($li['totalrecargo'], $this->documento->coddivisa);
-            }
-
-            $opciones['cols']['iva' . $li['iva']] = array('justification' => 'right');
         }
 
         if ($this->documento->totalirpf != 0) {
@@ -507,7 +509,7 @@ class compras_imprimir extends fbase_controller
 
     public function generar_pdf_pedido_proveedor($archivo = FALSE)
     {
-        
+
     }
 
     public function generar_pdf_albaran_proveedor($archivo = FALSE)

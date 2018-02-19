@@ -13,7 +13,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -135,6 +135,14 @@ class imprimir_presu_pedi extends ventas_imprimir
                 'type' => 'pdf',
                 'text' => '<span class="glyphicon glyphicon-print"></span>&nbsp; ' . ucfirst(FS_PRESUPUESTO) . ' simple',
                 'params' => '&presupuesto=TRUE'
+            ),
+            array(
+                'name' => 'imprimir_presupuesto_noiva',
+                'page_from' => __CLASS__,
+                'page_to' => 'ventas_presupuesto',
+                'type' => 'pdf',
+                'text' => '<span class="glyphicon glyphicon-print"></span>&nbsp; ' . ucfirst(FS_PRESUPUESTO) . ' iva oculto',
+                'params' => '&presupuesto=TRUE&noiva=TRUE'
             ),
             array(
                 'name' => 'email_presupuesto',
