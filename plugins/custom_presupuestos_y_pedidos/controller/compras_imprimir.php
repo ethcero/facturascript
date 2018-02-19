@@ -456,12 +456,20 @@ class compras_imprimir extends fbase_controller
          * Página            Neto    IVA   Total
          */
         $pdf_doc->new_table();
-        $titulo = array('pagina' => '<b>Página</b>', 'dto' => '<b>Dto.</b>', 'neto' => '<b>Neto</b>',);
+        $titulo = array('pagina' => '<b>Página</b>');
+        if (!isset($GET('solototal'))) {
+            $titulo['dto'] = '<b>Dto.</b>';
+            $titulo['neto'] = '<b>Neto</b>';
+        }
+
         $fila = array(
             'pagina' => $pagina . '/' . $this->numpaginas,
-            'dto' => $this->show_numero($due_totales).' %',
-            'neto' => $this->show_precio($this->documento->neto, $this->documento->coddivisa),
         );
+
+        if (!isset($GET('solototal'))) {
+            $fila['dto'] = $this->show_numero($due_totales).' %';
+            $fila['neto'] = $this->show_precio($this->documento->neto, $this->documento->coddivisa);
+        }
 
         $opciones = array(
             'cols' => array(
@@ -474,7 +482,7 @@ class compras_imprimir extends fbase_controller
             'lineCol' => array(0.3, 0.3, 0.3),
             'width' => 520
         );
-        if (!isset($_GET['noiva'])) {
+        if (!isset($_GET['solototal'])) {
             foreach ($lineas_iva as $li) {
                 $imp = $this->impuesto->get($li['codimpuesto']);
                 if ($imp) {

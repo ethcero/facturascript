@@ -13,7 +13,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -263,23 +263,23 @@ class ventas_imprimir extends compras_imprimir
             unset($table_header['alb']);
         }
 
-        if ($this->impresion['print_dto'] && !isset($_GET['noval'])) {
+        if ($this->impresion['print_dto'] && !isset($_GET['noval']) && !isset($_GET['solototal'])) {
             $table_header['dto'] = '<b>Dto.</b>';
         }
 
-        if ($multi_iva && !isset($_GET['noval'])) {
+        if ($multi_iva && !isset($_GET['noval']) && !isset($_GET['solototal'])) {
             $table_header['iva'] = '<b>' . FS_IVA . '</b>';
         }
 
-        if ($multi_re && !isset($_GET['noval'])) {
+        if ($multi_re && !isset($_GET['noval']) && !isset($_GET['solototal'])) {
             $table_header['re'] = '<b>R.E.</b>';
         }
 
-        if ($multi_irpf && !isset($_GET['noval'])) {
+        if ($multi_irpf && !isset($_GET['noval']) && !isset($_GET['solototal'])) {
             $table_header['irpf'] = '<b>' . FS_IRPF . '</b>';
         }
 
-        if (isset($_GET['noval'])) {
+        if (isset($_GET['noval']) || isset($_GET['solototal'])) {
             unset($table_header['pvp']);
         } else {
             $table_header['importe'] = '<b>Importe</b>';
@@ -548,12 +548,12 @@ class ventas_imprimir extends compras_imprimir
 
     public function generar_pdf_presupuesto($archivo = FALSE)
     {
-        
+
     }
 
     public function generar_pdf_pedido($archivo = FALSE)
     {
-        
+
     }
 
     public function generar_pdf_albaran($archivo = FALSE)

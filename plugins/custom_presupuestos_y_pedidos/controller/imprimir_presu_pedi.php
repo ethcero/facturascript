@@ -141,8 +141,8 @@ class imprimir_presu_pedi extends ventas_imprimir
                 'page_from' => __CLASS__,
                 'page_to' => 'ventas_presupuesto',
                 'type' => 'pdf',
-                'text' => '<span class="glyphicon glyphicon-print"></span>&nbsp; ' . ucfirst(FS_PRESUPUESTO) . ' iva oculto',
-                'params' => '&presupuesto=TRUE&noiva=TRUE'
+                'text' => '<span class="glyphicon glyphicon-print"></span>&nbsp; ' . ucfirst(FS_PRESUPUESTO) . ' solo total',
+                'params' => '&presupuesto=TRUE&solototal=TRUE'
             ),
             array(
                 'name' => 'email_presupuesto',
