@@ -457,7 +457,7 @@ class compras_imprimir extends fbase_controller
          */
         $pdf_doc->new_table();
         $titulo = array('pagina' => '<b>Página</b>');
-        if (!isset($_GET('solototal'))) {
+        if (!isset($_GET['solototal'])) {
             $titulo['dto'] = '<b>Dto.</b>';
             $titulo['neto'] = '<b>Neto</b>';
         }
@@ -466,7 +466,7 @@ class compras_imprimir extends fbase_controller
             'pagina' => $pagina . '/' . $this->numpaginas,
         );
 
-        if (!isset($_GET('solototal'))) {
+        if (!isset($_GET['solototal'])) {
             $fila['dto'] = $this->show_numero($due_totales).' %';
             $fila['neto'] = $this->show_precio($this->documento->neto, $this->documento->coddivisa);
         }
