@@ -137,7 +137,7 @@ class imprimir_presu_pedi extends ventas_imprimir
                 'params' => '&presupuesto=TRUE'
             ),
             array(
-                'name' => 'imprimir_presupuesto_noiva',
+                'name' => 'imprimir_presupuesto_solototal',
                 'page_from' => __CLASS__,
                 'page_to' => 'ventas_presupuesto',
                 'type' => 'pdf',
