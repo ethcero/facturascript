@@ -121,6 +121,14 @@ class imprimir_presu_pedi extends ventas_imprimir
                 'params' => '&pedido=TRUE&noval=TRUE'
             ),
             array(
+                'name' => 'imprimir_pedido_solototal',
+                'page_from' => __CLASS__,
+                'page_to' => 'ventas_pedido',
+                'type' => 'pdf',
+                'text' => '<span class="glyphicon glyphicon-print"></span>&nbsp; ' . ucfirst(FS_PEDIDO) . ' solo total',
+                'params' => '&pedido=TRUE&solototal=TRUE'
+            ),
+            array(
                 'name' => 'email_pedido',
                 'page_from' => __CLASS__,
                 'page_to' => 'ventas_pedido',
