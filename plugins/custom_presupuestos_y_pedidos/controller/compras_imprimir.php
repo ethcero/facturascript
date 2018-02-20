@@ -490,13 +490,13 @@ class compras_imprimir extends fbase_controller
                 } else {
                     $titulo['iva' . $li['iva']] = '<b>' . FS_IVA . ' ' . $li['iva'] . '%</b>';
                 }
-
-                $fila['iva' . $li['iva']] = $this->show_precio($li['totaliva'], $this->documento->coddivisa);
+                $fila['iva' . $li['iva']] = $this->show_precio($li['totaliva'] * (100 - $due_totales) / 100, $this->documento->coddivisa);
 
                 if ($li['totalrecargo'] != 0) {
+                    $li['totalrecargo'] = $li['totalrecargo'] * (100 - $due_totales) / 100;
                     $fila['iva' . $li['iva']] .= "\nR.E. " . $li['recargo'] . "%: " . $this->show_precio($li['totalrecargo'], $this->documento->coddivisa);
                 }
-
+                
                 $opciones['cols']['iva' . $li['iva']] = array('justification' => 'right');
             }
         }
