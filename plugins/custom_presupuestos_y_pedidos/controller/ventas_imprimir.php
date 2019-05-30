@@ -310,6 +310,11 @@ class ventas_imprimir extends compras_imprimir
                 'importe' => $this->show_precio($lineas[$linea_actual]->pvptotal, $this->documento->coddivisa)
             );
 
+            if(isset($_GET['solototal'])){
+                $fila['pvp'] = $this->show_precio($lineas[$linea_actual]->pvpunitario * $lineas[$linea_actual]->iva, $this->documento->coddivisa, TRUE, FS_NF0_ART),
+                $fila['importe'] = $this->show_precio($lineas[$linea_actual]->pvptotal, $this->documento->coddivisa)
+            }
+
             if ($lineas[$linea_actual]->dtopor == 0) {
                 $fila['dto'] = '';
             }
