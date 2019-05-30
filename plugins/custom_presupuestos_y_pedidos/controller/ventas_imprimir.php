@@ -263,7 +263,7 @@ class ventas_imprimir extends compras_imprimir
             unset($table_header['alb']);
         }
 
-        if ($this->impresion['print_dto'] && !isset($_GET['noval']) && !isset($_GET['solototal'])) {
+        if ($this->impresion['print_dto'] && !isset($_GET['noval'])) {
             $table_header['dto'] = '<b>Dto.</b>';
         }
 
