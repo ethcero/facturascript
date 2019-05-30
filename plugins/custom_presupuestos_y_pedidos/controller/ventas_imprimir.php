@@ -279,7 +279,7 @@ class ventas_imprimir extends compras_imprimir
             $table_header['irpf'] = '<b>' . FS_IRPF . '</b>';
         }
 
-        if (isset($_GET['noval']) || isset($_GET['solototal'])) {
+        if (isset($_GET['noval'])) {
             unset($table_header['pvp']);
         } else {
             $table_header['importe'] = '<b>Importe</b>';
